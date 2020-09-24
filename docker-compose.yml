@@ -1,0 +1,17 @@
+version: "3.7"
+networks:
+  dev-networks:
+    name: dev-networks
+services:
+  client:
+    networks:
+      - dev-networks
+    container_name: client_dev
+    build:
+      context: .
+      dockerfile: test-app.Dockerfile
+    restart: always
+    volumes:
+      - ./test-app/src:/var/www/src
+    ports:
+      - 80:80

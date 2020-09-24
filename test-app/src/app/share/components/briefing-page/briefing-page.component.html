@@ -1,0 +1,12 @@
+<main>
+  <div class="left-bar">
+    <h3>Требования</h3>
+    {{briefTitle}}
+    <p>{{description}}</p>
+
+    <app-deep-list [item]="workItems"></app-deep-list>
+  </div>
+  <div class="right-bar">
+      <ng-content></ng-content>
+  </div>
+</main>

@@ -1,0 +1,9 @@
+<ul>
+  <ng-container *ngFor="let child of item.children">
+    <li>{{child.name}}
+      <ng-container *ngIf="child.children.length > 0">
+        <app-deep-list [item]="child"></app-deep-list>
+      </ng-container>
+    </li>
+  </ng-container>
+</ul>

@@ -1,0 +1,46 @@
+:host {
+  height: 100%;
+  width: 100%;
+}
+
+main {
+  height: 100%;
+  width: 100%;
+}
+
+mat-toolbar {
+  height: 64px;
+}
+
+.content {
+  height: calc(100% - 64px);
+}
+
+.icon {
+  width: 50px;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+.menu {
+  &__item-title {
+    padding: 0 10px;
+
+    &--is-active {
+      background-color: aquamarine;
+      color: black;
+      line-height: 30px;
+      border-radius: 20px;
+    }
+  }
+  .item {
+
+  }
+}
+
+.content-container {
+  height: 100%;
+}

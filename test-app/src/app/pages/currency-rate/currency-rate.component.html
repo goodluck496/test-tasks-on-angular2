@@ -1,0 +1,41 @@
+<app-briefing-page
+  briefTitle="Курс валют с разными источниками"
+  description="Необходимо создать страницу, на которой в режиме реального времени(периодичность опроса источника 10 сек),
+будет выводиться текущий курс Евро по отношению к российскому рублю."
+  [workItems]="workItems"
+>
+
+  <div [formGroup]="valuteGroup" class="currency-form" >
+    <mat-form-field>
+      <mat-label>Код валюты</mat-label>
+      <mat-select formControlName="charCode">
+        <mat-option *ngFor="let item of currency | async" [value]="item.charCode">[{{item.charCode}}] {{item.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-raised-button (click)="nextSource()" [disabled]="isLoading | async">Следующий источник</button>
+  </div>
+
+
+
+  <div class="currency-date">{{currentSource.name}} - {{(currencyDate | async) | appMoment: 'DD.MM.YYYY'}}</div>
+  <div>До автоматического обновления {{10 - updateProgress / 10 }} сек</div>
+  <mat-progress-bar [value]="updateProgress" mode="buffer"></mat-progress-bar>
+  <div class="currency-cards-container">
+    <ng-container *ngIf="(currency | async).length > 0; else emptyData">
+      <div *ngFor="let item of currency | async"
+           class="currency-card"
+           [class.currency-card--active]="currencyIsSelect(item)"
+           [matTooltip]="item.name"
+      >
+        <div class="currency-card__code">{{item.charCode}}</div>
+        <div class="currency-card__value">{{item.valueSell | appNumeral:'0,0.[0000]'}}</div>
+      </div>
+    </ng-container>
+    <ng-template #emptyData>Нет данных</ng-template>
+
+  </div>
+
+  <ng-template #errorFetchDataModal></ng-template>
+
+
+</app-briefing-page>

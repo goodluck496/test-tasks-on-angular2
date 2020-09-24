@@ -1,0 +1,49 @@
+<main>
+
+  <mat-drawer-container
+    class="content-container"
+    autosize
+    [hasBackdrop]="false"
+  >
+    <mat-toolbar>
+      <mat-icon class="icon" matRipple
+                [matRippleCentered]="true"
+                [matRippleRadius]="25"
+                (click)="drawer.toggle()"
+      >menu
+      </mat-icon>
+      Тестовые задания
+    </mat-toolbar>
+    <mat-drawer #drawer
+                class="sidenav"
+                mode="push"
+                [opened]="true"
+
+    >
+
+      <mat-accordion>
+        <mat-expansion-panel *ngFor="let menuItem of menu" class="menu__item">
+          <mat-expansion-panel-header
+            (click)="navigateBy(menuItem.url)"
+          >
+            <mat-panel-title
+              class="menu__item-title"
+              [class.menu__item-title--is-active]="isActive(menuItem.url)"
+            >{{menuItem.title}}</mat-panel-title>
+          </mat-expansion-panel-header>
+          {{menuItem.description}}
+        </mat-expansion-panel>
+      </mat-accordion>
+
+    </mat-drawer>
+
+    <div class="content">
+      <ng-scrollbar>
+        <router-outlet></router-outlet>
+      </ng-scrollbar>
+    </div>
+
+  </mat-drawer-container>
+
+
+</main>

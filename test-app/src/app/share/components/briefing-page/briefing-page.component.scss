@@ -1,0 +1,19 @@
+main {
+  padding: 24px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.left-bar {
+  max-width: 400px;
+  width: 30%;
+}
+
+.right-bar {
+  width: 70%;
+  //max-width: 400px;
+}
+
+h3 {
+  margin-top: 0;
+}
